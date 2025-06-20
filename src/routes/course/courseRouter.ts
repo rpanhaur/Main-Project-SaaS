@@ -1,9 +1,10 @@
 import express, { Router } from 'express'
 import asyncErrorHandler from '../../services/asyncErrorHandler'
 import courseController from '../../controller/course/courseController'
-const courseRouter:Router=express.Router()
+import Middleware from '../../middleware/middleware'
+const courseRouter: Router = express.Router()
 
-courseRouter.route('/course').post(asyncErrorHandler(courseController.createCourse))
+courseRouter.route('/institute/course').post(Middleware.isLogin, asyncErrorHandler(courseController.createCourse))
 
 
 
